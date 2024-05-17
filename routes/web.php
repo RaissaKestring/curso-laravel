@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,63 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('produtos', ProdutoController::class);
+
+/*
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('admin.clientes');
 });
 
+ Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin'
+], function(){
 
-Route::get('/empresa', function(){
-    return view('site/empresa');
+    Route::get('dashboard', function(){
+        return "dashboard";
+    })->name('dashboard');
+    
+    Route::get('users', function(){
+        return "users";
+    })->name('users');;
+    
+    Route::get('clientes', function(){
+        return "clientes";
+    })->name('clientes');;
 });
+*/
+
+/*
+
+Route::any('/any', function(){
+    return "Permite todo o tipo de acesso http (put, delete, get, post)";
+});
+
+Route::match(['get', 'post'], '/match', function(){
+    return "Permite apenas acessos definidos";
+});
+
+Route::get('/produto/{id}/{cat}', function($id, $cat){
+    return "O id do produto é: ".$id."<br>"."A categoria é: ".$cat;
+;});
+
+Route::view('/empresa', 'site/empresa');
+
+Route::get('/news', function(){
+    return view('news');
+})->name('noticias');
+
+Route::get('/novidades', function(){
+    return redirect()->route('noticias');
+});
+*/
+
+/* 
+    Route ::get('/sobre', function(){
+    return redirect('/empresa');
+}); 
+
+mesma coisa que:
+*/
+
+// Route::redirect('/sobre', '/empresa');
