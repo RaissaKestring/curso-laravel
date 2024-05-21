@@ -22,7 +22,7 @@
     @endforeach
 </div>
 
-<div class="row">
+<div class="row center">
     {{$produtos->links('custom.pagination')}}
 </div>
     
