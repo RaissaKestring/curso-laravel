@@ -3,55 +3,28 @@
 @section('conteudo')
 
 <div class="row container">
-    <div class="col s12 m3">
-        <div class="card">
-            <div class="card-image">
-              <img src="images/sample-1.jpg">
-              <span class="card-title">Card Title</span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">visibility</i></a>
+
+    @foreach($produtos as $produto)
+
+        <div class="col s12 m4">
+            <div class="card">
+                <div class="card-image">
+                <img src="{{$produto->imagem}}"> {{--Busca pelo banco de dados, table produtos e coluna imagem--}}
+                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">visibility</i></a>
+                </div>
+                <div class="card-content">
+                    <span class="card-title">{{$produto->nome}}</span>
+                <p>{{Str::limit($produto->descricao, 20)}}</p>
+                </div>
             </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-            </div>
-          </div>
-    </div>
-    <div class="col s12 m3">
-        <div class="card">
-            <div class="card-image">
-              <img src="images/sample-1.jpg">
-              <span class="card-title">Card Title</span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-            </div>
-          </div>
-    </div>
-    <div class="col s12 m3">
-        <div class="card">
-            <div class="card-image">
-              <img src="images/sample-1.jpg">
-              <span class="card-title">Card Title</span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-            </div>
-          </div>
-    </div>
-    <div class="col s12 m3">
-        <div class="card">
-            <div class="card-image">
-              <img src="images/sample-1.jpg">
-              <span class="card-title">Card Title</span>
-              <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-            </div>
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-            </div>
-          </div>
-    </div>
+        </div>
+    
+    @endforeach
 </div>
 
+<div class="row">
+    {{$produtos->links('custom.pagination')}}
+</div>
+    
 @endsection
 
