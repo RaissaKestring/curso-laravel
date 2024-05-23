@@ -26,6 +26,20 @@
       </div>
     @endif
 
+    @if($itens->count() ==0)
+
+    <div class="card orange darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Seu carrinho está vazio!</span>
+          <p>Aproveite nossas promoçẽs</p>
+        </div>
+      </div>
+    
+        
+    
+        
+    @else
+
     <h5>Seu carrinho possui {{$itens->count()}} produtos.</h5>
     <table class="striped">
         <thead>
@@ -49,7 +63,7 @@
             <form action="{{route('site.atualizacarrinho')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{$item->id}}">
-            <td><input style="width: 40px; font-weight:900" class="white center" type="number" name="quantity" value="{{$item->quantity}}"></td>
+            <td><input style="width: 40px; font-weight:900" class="white center" min="1" type="number" name="quantity" value="{{$item->quantity}}"></td>
             <td> 
                 <button class="btn-floating waves-effect waves-light orange"><i class="material-icons">refresh</i></button>
             </form>
@@ -66,6 +80,10 @@
           @endforeach
         </tbody>
       </table>
+        
+    @endif
+
+
 
       <div class="row container center">
 
