@@ -80,6 +80,13 @@
           @endforeach
         </tbody>
       </table>
+
+      <div class="card orange darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">TOTAL: R$ {{number_format(Darryldecode\Cart\Facades\CartFacade::getTotal(), 2, ',', '.')}}</span>
+          <p>Pague em 12x sem juros</p>
+        </div>
+      </div>
         
     @endif
 
@@ -87,7 +94,7 @@
 
       <div class="row container center">
 
-        <button class="btn waves-effect waves-light blue">Continuar comprando<i class="material-icons right">arrow_back</i></button>
+        <a href="{{ route('site.index') }}" class="btn waves-effect waves-light blue">Continuar comprando<i class="material-icons right">arrow_back</i></a>
 
         <form id="limpar-carrinho-form" action="{{ route('site.limparcarrinho') }}" method="POST" style="display: none;">
             @csrf
