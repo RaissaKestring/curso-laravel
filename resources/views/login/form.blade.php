@@ -11,7 +11,9 @@
 <form action="{{route('login.auth')}}" method="POST">
     @csrf
 
-    Email: <br> <input type="email" name="email"> <br>
+    Email: <br> <input name="email"> <br>
     Senha: <br> <input type="password" name="password"> <br>
+    <input type="checkbox" name="remember"> Lembrar-me
     <button type="submit">Entrar</button>
+
 </form>  
