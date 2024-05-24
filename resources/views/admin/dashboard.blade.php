@@ -1,1 +1,1 @@
-<h1>DASHBOARD</h1>
+<h1>Olá {{auth()->user()->firstName}}</h1>
