@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::post('/atualizar', [CarrinhoController::class, 'atualizaCarrinho'])->name
 Route::post('/limpar', [CarrinhoController::class, 'limparCarrinho'])->name('site.limparcarrinho');
 Route::view('/login', 'login.form')->name('login.form');
 Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 /*
 Route::get('/', function () {
     return redirect()->route('admin.clientes');
