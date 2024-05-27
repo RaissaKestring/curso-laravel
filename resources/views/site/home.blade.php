@@ -11,15 +11,7 @@
                 <div class="card-image">
                 <img src="{{$produto->imagem}}"> {{--Busca pelo banco de dados, table produtos e coluna imagem--}}
 
-                    @can('verProduto', $produto)
-
                 <a href="{{ route('site.details', $produto->slug)}}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">visibility</i></a>
-
-                @endcan
-
-                @cannot('verProduto', $produto)
-
-                @endcannot
 
                 </div>
                 <div class="card-content">

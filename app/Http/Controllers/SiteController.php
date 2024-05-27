@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class SiteController extends Controller
 {
@@ -21,8 +23,6 @@ class SiteController extends Controller
     {
 
         $produto = Produto::where('slug', $slug)->first();
-        //Gate::authorize('ver-produto', $produto);
-        $this->authorize('verProduto', $produto);
         Gate::authorize('ver-produto', $produto);
         return view('site.details', compact('produto'));
     }
