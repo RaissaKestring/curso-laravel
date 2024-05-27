@@ -1,0 +1,49 @@
+[33mcommit dbfed2872ca29fb9fe3d2d2a5f71e2d981333493[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31mcurso-laravel/main[m[33m)[m
+Author: RaissaKestring <raissakestring23@gmail.com>
+Date:   Mon May 27 13:51:58 2024 -0300
+
+    Restringindo acesso
+
+[1mdiff --git a/app/Http/Controllers/SiteController.php b/app/Http/Controllers/SiteController.php[m
+[1mindex 960bbb0..e824f26 100644[m
+[1m--- a/app/Http/Controllers/SiteController.php[m
+[1m+++ b/app/Http/Controllers/SiteController.php[m
+[36m@@ -6,6 +6,8 @@[m
+ use App\Models\Produto;[m
+ use App\Models\Categoria;[m
+ use Illuminate\Support\Facades\Gate;[m
+[32m+[m[32muse Illuminate\Support\Facades\Auth;[m
+[32m+[m[32muse Illuminate\Foundation\Auth\User as Authenticatable;[m
+ [m
+ class SiteController extends Controller[m
+ {[m
+[36m@@ -21,8 +23,6 @@[m [mpublic function details($slug)[m
+     {[m
+ [m
+         $produto = Produto::where('slug', $slug)->first();[m
+[31m-        //Gate::authorize('ver-produto', $produto);[m
+[31m-        $this->authorize('verProduto', $produto);[m
+         Gate::authorize('ver-produto', $produto);[m
+         return view('site.details', compact('produto'));[m
+     }[m
+[1mdiff --git a/resources/views/site/home.blade.php b/resources/views/site/home.blade.php[m
+[1mindex 5694973..7f5251a 100644[m
+[1m--- a/resources/views/site/home.blade.php[m
+[1m+++ b/resources/views/site/home.blade.php[m
+[36m@@ -11,16 +11,8 @@[m
+                 <div class="card-image">[m
+                 <img src="{{$produto->imagem}}"> {{--Busca pelo banco de dados, table produtos e coluna imagem--}}[m
+ [m
+[31m-                    @can('verProduto', $produto)[m
+[31m-[m
+                 <a href="{{ route('site.details', $produto->slug)}}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">visibility</i></a>[m
+ [m
+[31m-                @endcan[m
+[31m-[m
+[31m-                @cannot('verProduto', $produto)[m
+[31m-[m
+[31m-                @endcannot[m
+[31m-[m
+                 </div>[m
+                 <div class="card-content">[m
+                     <span class="card-title">{{$produto->nome}}</span>[m
